@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-navigation'
 import Seasons from './components/Seasons'
+
+
 
 export default class App extends React.Component {
 
@@ -9,11 +12,21 @@ export default class App extends React.Component {
 
   }
 
+  getdata(season){
+    fetch(`http://ergast.com/api/f1/${season}.json`)
+      .then(response => response.json())
+      .then(data => {
+        let races = data.MRData.RaceTable.Races;
+        let racesStr = races.map(it => `${it.round} - ${it.raceName}`).join('\n');
+        alert(racesStr);
+      });
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Seasons />
-      </View>
+      <SafeAreaView style={styles.container}>
+        <Seasons handleClick={ this.getdata } />
+      </SafeAreaView>
     );
   }
 }
@@ -21,7 +34,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#404040',
     alignItems: 'center',
     justifyContent: 'center',
   },
