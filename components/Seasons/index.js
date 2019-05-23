@@ -7,7 +7,7 @@ class Seasons extends PureComponent{
         let items = [];
 
         for(let i =0; i < 19; i++){
-            items.push(<Text key={ `season-${i}` }>{ i.toFixed(2) }</Text>);
+            items.push(<Text key={ `season-${i}` }>{ `0${i}`.substr(-2, 2) }</Text>);
         }
         return items;
     }
