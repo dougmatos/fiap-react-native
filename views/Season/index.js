@@ -25,7 +25,7 @@ export default class Season extends React.Component{
 
     renderRaces(){
         return this.state.races
-            .map((it, idx) => <Race key={`season-${idx}`} race={{...it}} />);
+            .map(it => <Race key={it.Circuit.circuitId} race={{...it}} />);
     }
 
     render() {
