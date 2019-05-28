@@ -6,5 +6,11 @@ export default StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap'
         
+    },
+    Button:{
+        marginRight:5,
+        width:92, 
+        marginLeft:6, 
+        marginTop:5
     }
 });
