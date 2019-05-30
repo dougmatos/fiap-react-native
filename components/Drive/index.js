@@ -2,18 +2,19 @@ import React, {PureComponent} from 'react'
 import { Title, Button, Text, Card } from 'native-base';
 import {StyleSheet} from 'react-native'
 
-export default class Race extends PureComponent{
+export default class Drive extends PureComponent{
 
     constructor(props){
         super(props);
     }
 
     render(){
-        let race = this.props.race;
+        let pilot = this.props.drive;
         return (
             <Card style={style.Card }>
-                <Title style={{textAlign:'left', paddingLeft: 0}}>{ `${('0' + race.round).substr(-2, 2)} - ${race.raceName}` }</Title>
-                <Text>Data: { race.date }</Text>
+                <Title style={{textAlign:'left',paddingLeft: 0}}>{ `${pilot.givenName} ${pilot.familyName}` }</Title>
+                <Text>Nacionalidade: { pilot.nationality }</Text>
+                <Text>Data de nascimento: { pilot.dateOfBirth }</Text>
             </Card>
         );
     }

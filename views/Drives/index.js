@@ -2,38 +2,38 @@ import React from 'react'
 import { SafeAreaView } from 'react-navigation'
 import { ScrollView } from 'react-native-gesture-handler';
 import TitleScreen from '../../components/TitleScreen'
-import Race from '../../components/Race';
+import Drive from '../../components/Drive';
 
-export default class Season extends React.Component{
+export default class Drivers extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = { title : "", races : [] };
+        this.state = { title : "", drivers : [] };
     }
     static navigationOptions = () => {
-      return {title: 'Temporada'}
+      return {title: 'Pilotos'}
     }
 
     componentDidMount(){
         const season = this.props.navigation.getParam('season');
-        this.setState({ title: `Corridas de ${season}` });
+        this.setState({ title: `Pilotos da temporada ${season}` });
 
-        fetch(`http://ergast.com/api/f1/${season}.json`)
+        fetch(`http://ergast.com/api/f1/${season}/drivers.json`)
           .then(response => response.json())
-          .then(data => this.setState({races: data.MRData.RaceTable.Races}));
+          .then(data => this.setState({drivers: data.MRData.DriverTable.Drivers}));
     }
 
-    renderRaces(){
-        return this.state.races
-            .map(it => <Race key={it.Circuit.circuitId} race={{...it}} />);
-    }
+     renderDrivers(){
+         return this.state.drivers
+             .map(it => <Drive key={it.driverId} drive={{...it}} />);
+     }
 
     render() {
         return (
           <SafeAreaView>
             <TitleScreen title={ this.state.title } />
             <ScrollView>
-                { this.renderRaces() }
+                { this.renderDrivers() }
             </ScrollView>
           </SafeAreaView>
         );

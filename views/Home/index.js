@@ -1,10 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-navigation'
 import Seasons from '../../components/Seasons'
-import { Title } from 'native-base';
 import TitleScreen from '../../components/TitleScreen';
-
 
 
 export default class App extends React.Component {
@@ -14,12 +12,10 @@ export default class App extends React.Component {
     this.getdata = this.getdata.bind(this)
   }
 
-  static navigationOptions = () => {
-    return {title: 'Home'}
-  }
 
   getdata(season){
-    this.props.navigation.navigate('Season', { season });
+    
+    this.props.navigation.navigate('Menu', { season });
   }
 
   render() {
