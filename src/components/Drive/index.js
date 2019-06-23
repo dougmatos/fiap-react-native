@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react'
 import { Title, Button, Text, Card } from 'native-base';
 import {StyleSheet} from 'react-native'
+import DateFormatterService from "../../services/DateFormatterService";
 
 export default class Drive extends PureComponent{
 
@@ -12,9 +13,9 @@ export default class Drive extends PureComponent{
         let pilot = this.props.drive;
         return (
             <Card style={style.Card }>
-                <Title style={{textAlign:'left',paddingLeft: 0}}>{ `${pilot.givenName} ${pilot.familyName}` }</Title>
+                <Title style={style.driveTitle}>{ `${pilot.givenName} ${pilot.familyName}` }</Title>
                 <Text>Nacionalidade: { pilot.nationality }</Text>
-                <Text>Data de nascimento: { pilot.dateOfBirth }</Text>
+                <Text>Data de nascimento: { DateFormatterService.format(pilot.dateOfBirth) }</Text>
             </Card>
         );
     }
@@ -29,5 +30,10 @@ const style = StyleSheet.create({
         padding: 15,
         backgroundColor: '#ccc'
     },
-    
+    driveTitle: {
+        textAlign: 'left',
+        paddingLeft: 0,
+        color: '#444',
+        fontWeight: 'bold'
+    }
 });

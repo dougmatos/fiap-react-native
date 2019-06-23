@@ -5,9 +5,6 @@ import { Button, Text, Card } from 'native-base';
 import {Dimensions, StyleSheet} from 'react-native'
 
 export default class Menu extends React.Component{
-
-    
-
     constructor(props){
         super(props);
         this.state = {
@@ -25,7 +22,6 @@ export default class Menu extends React.Component{
         this.props.navigation.navigate(page, { season });
     }
 
-
     render(){
         return (
             <SafeAreaView>
@@ -36,6 +32,9 @@ export default class Menu extends React.Component{
                 <Button style={style.buttonMenu} onPress={ () => this.goToPage('Drives') }>
                     <Text style={style.textButtonMenu}>Pilotos</Text>
                 </Button>
+                <Button style={style.buttonMenu} onPress={() => this.goToPage('Constructors')}>
+                    <Text style={style.textButtonMenu}>Construtores</Text>
+                </Button>
             </SafeAreaView>
         );
     }
@@ -45,9 +44,12 @@ export default class Menu extends React.Component{
 const style = StyleSheet.create({
     buttonMenu: {
         width:Dimensions.get('window').width - 30, 
-        marginLeft:15, marginRight: 15, marginTop: 15,
-        paddingTop: 50, paddingBottom: 50, 
-        height: 150, textAlign: 'center'
+        marginLeft:15, 
+        marginRight: 15, 
+        marginTop: 15,
+        paddingTop: 50, 
+        paddingBottom: 50, 
+        height: 130
     },
     textButtonMenu:{
         width: '100%',

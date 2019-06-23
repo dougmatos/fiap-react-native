@@ -3,12 +3,19 @@ import { SafeAreaView } from 'react-navigation'
 import { ScrollView } from 'react-native-gesture-handler';
 import TitleScreen from '../../components/TitleScreen'
 import Drive from '../../components/Drive';
+import FormulaOneService from '../../services/FormulaOneService';
+import Loader from "../../components/Loader";
+import style from "../style";
 
 export default class Drivers extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = { title : "", drivers : [] };
+        this.state = { 
+          title : "", 
+          loading: true, 
+          drivers : [] 
+        };
     }
     static navigationOptions = () => {
       return {title: 'Pilotos'}
@@ -17,10 +24,9 @@ export default class Drivers extends React.Component{
     componentDidMount(){
         const season = this.props.navigation.getParam('season');
         this.setState({ title: `Pilotos da temporada ${season}` });
-
-        fetch(`http://ergast.com/api/f1/${season}/drivers.json`)
-          .then(response => response.json())
-          .then(data => this.setState({drivers: data.MRData.DriverTable.Drivers}));
+        FormulaOneService.getDriversForSeason(season)
+          .then(drivers => this.setState({drivers, loading: false}))
+          .catch(x => alert(x));
     }
 
      renderDrivers(){
@@ -29,13 +35,20 @@ export default class Drivers extends React.Component{
      }
 
     render() {
+      if (this.state.loading)
         return (
           <SafeAreaView>
-            <TitleScreen title={ this.state.title } />
-            <ScrollView>
-                { this.renderDrivers() }
-            </ScrollView>
+            <Loader />
           </SafeAreaView>
         );
-      }
+
+      return (
+        <SafeAreaView style={style.safearea}>
+          <TitleScreen title={ this.state.title } />
+          <ScrollView>
+              { this.renderDrivers() }
+          </ScrollView>
+        </SafeAreaView>
+      );
+    }
 }
