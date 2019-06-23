@@ -44,6 +44,8 @@ npm run ios
 ### No emulador android
 Para executar o app no emulador doo android você deverá abrir ele antes pelo android studio.
 
+![](https://i.ibb.co/3MdDnHF/android-studio-avd1.png)
+
 Com o emulador aberto digite o comando abaixo no terminal.
 ```
 npm run android
