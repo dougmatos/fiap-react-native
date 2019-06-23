@@ -14,24 +14,32 @@ export default class Constructors extends React.Component {
         this.state = {
             title: "",
             loading: true,
+            season: 0,
             constructors: []
         };
+        this.getData = this.getData.bind(this);
     }
     static navigationOptions = () => {
-        return { title: 'Contrutores' }
+        return { title: 'voltar' }
     }
 
     componentDidMount() {
         const season = this.props.navigation.getParam('season');
-        this.setState({ title: `Construtores da temporada ${season}` });
+        this.setState({ title: `Construtores da temporada ${season}`, season });
+
         FormulaOneService.getConstructorsForSeason(season)
             .then(constructors => this.setState({ constructors, loading: false }))
             .catch(x => alert(x));
     }
 
+    getData(constructorId) {
+        const season = this.state.season;
+        this.props.navigation.navigate("ConstructorDetails", { season, constructorId });
+    }
+
     renderConstructors() {
         return this.state.constructors
-            .map(it => <Constructor key={it.constructorId} contructor={{ ...it }} />);
+            .map(it => <Constructor key={it.constructorId} contructor={{ ...it }} handleClick={this.getData} />);
     }
 
     render() {

@@ -9,12 +9,14 @@ import Loader from '../../components/Loader'
 
 export default class App extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.getdata = this.getdata.bind(this)
     this.state = { loading: true };
   }
-
+  static navigationOptions = () => {
+    return { title: 'voltar' }
+  }
   componentDidMount() {
     Font.loadAsync({ // correção de problema ao carregar no android
       Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -22,7 +24,7 @@ export default class App extends React.Component {
     }).then(() => this.setState({ loading: false }));
   }
 
-  getdata(season){
+  getdata(season) {
     this.props.navigation.navigate('Menu', { season });
   }
 
@@ -33,7 +35,7 @@ export default class App extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <TitleScreen title="Selecione o ano da temporada" />
-        <Seasons handleClick={ this.getdata } />
+        <Seasons handleClick={this.getdata} />
       </SafeAreaView>
     );
   }

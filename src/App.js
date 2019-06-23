@@ -7,6 +7,9 @@ import Menu from './views/Menu';
 import Drives from './views/Drives';
 import Constructors from "./views/Constructors";
 import TitleLogo from './components/TitleLogo';
+import RaceDetails from "./views/RaceDetails";
+import DriveDetails from "./views/DriveDetails";
+import ConstructorDetails from "./views/ConstructorDetails";
 
 const AppNavigator = createStackNavigator(
   {
@@ -14,7 +17,10 @@ const AppNavigator = createStackNavigator(
     Season: {screen: Season},
     Menu:{screen: Menu},
     Drives:{screen: Drives},
-    Constructors:{screen: Constructors}
+    Constructors:{screen: Constructors},
+    RaceDetails: {screen: RaceDetails},
+    DriveDetails: {screen: DriveDetails},
+    ConstructorDetails: {screen: ConstructorDetails}
   },
   {
     initialRouteName: 'Home',

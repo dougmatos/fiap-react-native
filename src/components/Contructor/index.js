@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
-import { Title, Text, Card } from 'native-base';
+import { Title, Text, Card, Button, View } from 'native-base';
 import { StyleSheet } from 'react-native'
+import styleMaster from "../../views/style";
 
 export default class Constructor extends PureComponent {
 
@@ -11,27 +12,19 @@ export default class Constructor extends PureComponent {
     render() {
         let contructor = this.props.contructor;
         return (
-            <Card style={style.Card}>
-                <Title style={style.constructorTitle}>{contructor.name}</Title>
-                <Text>País: {contructor.nationality}</Text>
-            </Card>
+            <Button onPress={() => this.props.handleClick(contructor.constructorId)} style={styleMaster.buttonSecondary}>
+                <View style={style.wrapperButton}>
+                    <Title style={styleMaster.buttonSecondaryTitle}>{contructor.name}</Title>
+                    <Text style={styleMaster.buttonSecondaryTextLast}>País: {contructor.nationality}</Text>
+                </View>
+            </Button>
         );
     }
 
 }
 
 const style = StyleSheet.create({
-    Card: {
-        marginBottom: 5,
-        marginLeft: 5,
-        marginRight: 5,
-        padding: 15,
-        backgroundColor: '#ccc'
-    },
-    constructorTitle: {
-        textAlign: 'left',
-        paddingLeft: 0,
-        color: '#444',
-        fontWeight: 'bold'
+    wrapperButton: {
+        flexDirection: 'column'
     }
 });

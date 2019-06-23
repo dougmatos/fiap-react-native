@@ -1,17 +1,17 @@
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import { Title, Text } from 'native-base';
-import {StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 
-export default class TitleScreen extends PureComponent{
+export default class TitleScreen extends PureComponent {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        
-      }
 
-    render(){
+    }
+
+    render() {
         return (
-            <Text style={style.title}>{ this.props.title }</Text>
+            <Text style={style.title}>{this.props.title}</Text>
         );
     }
 
@@ -19,9 +19,9 @@ export default class TitleScreen extends PureComponent{
 
 const style = StyleSheet.create({
     title: {
-        marginTop:5,
-        padding:10,
+        marginTop: 5,
+        padding: 10,
         color: '#333',
-        fontWeight:'bold'
-    } 
+        fontWeight: 'bold'
+    }
 });
